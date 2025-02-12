@@ -1,8 +1,15 @@
 const express = require('express');
 const app = express();
 
+app.use(express.text());
+
 app.get('/', (req, res) => {
     res.send('Hello World');
+});
+
+app.post('/', (req, res) => {
+    console.log(req.body);
+    res.send('Hello World from POST');
 });
 
 app.listen(3000, () => {
