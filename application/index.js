@@ -1,12 +1,17 @@
 const express = require('express');
-const handle = require('../handle');
+const path = require('path');
 
 const app = express();
+const PORT = 3000;
 
-app.locals.title = 'My App';
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '..', 'views')); // Ensure views are in the 'views' folder
 
-app.get('/', handle);
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Express HTML Page', message: 'This page is rendered using EJS' });
+});
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });
